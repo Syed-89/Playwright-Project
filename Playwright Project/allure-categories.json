@@ -1,0 +1,15 @@
+[
+  {
+    "name": "Product defects",
+    "matchedStatuses": ["failed"],
+    "messageRegex": ".*expect.*"
+  },
+  {
+    "name": "Test defects / flaky",
+    "matchedStatuses": ["broken"]
+  },
+  {
+    "name": "Skipped",
+    "matchedStatuses": ["skipped"]
+  }
+]

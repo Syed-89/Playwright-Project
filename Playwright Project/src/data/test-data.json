@@ -1,0 +1,69 @@
+{
+  "products": {
+    "backpack": "Sauce Labs Backpack",
+    "bikeLight": "Sauce Labs Bike Light",
+    "boltTShirt": "Sauce Labs Bolt T-Shirt",
+    "fleeceJacket": "Sauce Labs Fleece Jacket"
+  },
+  "customers": {
+    "default": {
+      "firstName": "John",
+      "lastName": "Doe",
+      "postalCode": "12345"
+    }
+  },
+  "cartScenarios": [
+    {
+      "name": "adding a product updates the cart badge",
+      "productKeys": ["backpack"],
+      "expectedCartCount": 1,
+      "tags": ["@smoke"]
+    },
+    {
+      "name": "adding multiple products accumulates the cart count",
+      "productKeys": ["backpack", "bikeLight"],
+      "expectedCartCount": 2,
+      "tags": ["@regression"]
+    },
+    {
+      "name": "cart page reflects the exact items added",
+      "productKeys": ["backpack", "boltTShirt"],
+      "expectedCartCount": 2,
+      "expectedItems": ["backpack", "boltTShirt"],
+      "goToCart": true,
+      "tags": ["@regression"]
+    }
+  ],
+  "sortingScenarios": [
+    {
+      "name": "products can be sorted by price low to high",
+      "sortBy": "lohi",
+      "valueType": "price",
+      "tags": ["@regression"]
+    },
+    {
+      "name": "products can be sorted alphabetically A to Z",
+      "sortBy": "az",
+      "valueType": "name",
+      "tags": ["@regression"]
+    }
+  ],
+  "checkoutScenarios": [
+    {
+      "name": "user can complete a full purchase",
+      "productKeys": ["backpack", "fleeceJacket"],
+      "expectedCartCount": 2,
+      "customerKey": "default",
+      "expectedConfirmation": "Thank you for your order!",
+      "tags": ["@smoke", "@regression"]
+    },
+    {
+      "name": "checkout requires customer information",
+      "productKeys": ["backpack"],
+      "expectedCartCount": 1,
+      "customerKey": "empty",
+      "expectErrorVisible": true,
+      "tags": ["@regression"]
+    }
+  ]
+}
