@@ -19,9 +19,18 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: '20'
+          node-version: '24'
           cache: npm
           cache-dependency-path: 'Playwright Project/package-lock.json'
+
+      - name: Cache Playwright browsers
+        uses: actions/cache@v4
+        with:
+          path: |
+            ~\AppData\Local\ms-playwright
+          key: ${{ runner.os }}-playwright-${{ hashFiles('Playwright Project/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-playwright-
 
       - name: Install dependencies
         working-directory: 'Playwright Project'
