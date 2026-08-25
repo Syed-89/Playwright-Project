@@ -58,6 +58,7 @@ export const customerData = data.customers.default;
 export const cartScenarios = data.cartScenarios.map((scenario) => ({
   ...scenario,
   productNames: resolveProductNames(scenario.productKeys),
+  expectedItems: scenario.expectedItems ? resolveProductNames(scenario.expectedItems) : undefined,
 }));
 export const sortingScenarios = data.sortingScenarios;
 export const checkoutScenarios = data.checkoutScenarios.map((scenario) => ({
